@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{title}}</title>   
-</head>
-<body>
-    <!-- {% extends "base.html" %} -->
-    <!-- {% block content %} -->
-    <form method='post'>
+{% extends "base.html" %}
+{% block content %}
+    <form action='/hello' method='post'>
         <h1>Signup Page</h1>
         <hr>
-        <label>Username:
-            <input name="Username" type="text" />
+        <label for='username' >Username:
+            <input id='username' name="username" type="text" />
         </label> 
         <br><br>
         <label>Password:
@@ -22,13 +16,11 @@
         </label>
         <br><br>
         <label>Email:
-                <input name="Username" type="text" />
+                <input name="email" type="text" />
         </label> 
         <br><br>
         <input type = "submit" />
         <br>
 
     </form>
-    <!-- {% endblock %}-->
-</body>
-</html>
+{% endblock %}
