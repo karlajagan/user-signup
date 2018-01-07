@@ -64,7 +64,7 @@ def validate_data():
 
     if not username_error and not password_error and \
         not validate_error and not email_error:
-        return "Success!"
+        return redirect('/welcome?username={0}'.format(username))
 
     else:
         return render_template('signup.html', 
@@ -75,10 +75,10 @@ def validate_data():
             password = password, val_password = val_password,
             email = email)   
 
-@app.route("/hello", methods=['POST'])
-def hello():
-    username = request.form['username']
-    return render_template('hello.html', title="Welcome", name=username)
-
+@app.route("/welcome")
+def welcome():
+    username = request.args.get('username')
+ #   return render_template('welcome.html', title="Welcome", name=username)
+    return '<h1>Welcome, {0}.'.format(username)
 
 app.run()
