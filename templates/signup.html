@@ -1,24 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-    <form action='/hello' method='post'>
+    <form action='/' method='post'>
         <h1>Signup Page</h1>
         <hr>
-        <label for='username' >Username:
-            <input id='username' name="username" type="text" />
+        <br>
+        <label>Username:
+            <input name="username" type="text" value='{{username}}'/>
         </label> 
-        <br><br>
+        <br>
+            <p class="error">{{username_error}}</p>
+        <br>
         <label>Password:
-            <input name="password" type="password" />
+            <input name="password" type="password"  value='{{password}}'/>
         </label>
-        <br><br>      
+        <br>
+            <p class="error">{{password_error}}</p>
+        <br>      
         <label>Validate Password:
-                <input name="validate_password" type="password" />
+                <input name="val_password" type="password" value='{{val_password}}'/>
         </label>
-        <br><br>
+        <br>
+            <p class="error">{{validate_error}}</p>
+        <br>
         <label>Email:
-                <input name="email" type="text" />
+                <input name="email" type="text" value='{{email}}' />
         </label> 
-        <br><br>
+        <br>
+            <p class="error">{{email_error}}</p>
+        <br>
         <input type = "submit" />
         <br>
 
