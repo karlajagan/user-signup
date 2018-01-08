@@ -4,19 +4,21 @@
         <h1>Signup Page</h1>
         <hr>
         <br>
-        <label>Username:
+        <p>* fields are mandatory</p>
+        <br>
+        <label>Username: *
             <input name="username" type="text" value='{{username}}'/>
         </label> 
         <br>
             <p class="error">{{username_error}}</p>
         <br>
-        <label>Password:
+        <label>Password: *
             <input name="password" type="password"  value='{{password}}'/>
         </label>
         <br>
             <p class="error">{{password_error}}</p>
         <br>      
-        <label>Validate Password:
+        <label>Validate Password: *
                 <input name="val_password" type="password" value='{{val_password}}'/>
         </label>
         <br>
@@ -32,4 +34,5 @@
         <br>
 
     </form>
+    <!--<p class="status">{{status}}</p> -->
 {% endblock %}
