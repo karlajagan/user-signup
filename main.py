@@ -37,6 +37,7 @@ def validate_email(field):
     error = ""
     ats = False
     count = 0
+    count2 = 0
     point = False
     spec = False
     i = 0
@@ -48,33 +49,39 @@ def validate_email(field):
                     ats = True
                     count += 1
                 else:
-                    error = "Invalid Email"
+                    error = "Email contains more than one @"
                     return error     
-            elif field[i] == ".":                
-                letter = string.ascii_letters
-                if field[i] == 0:
-                    if field[i+1] not in letter:
-                        error = "Invalid email"
-                        return error
-                elif field[i] == len(field) - 1:
-                    if field[i-1] not in letter:
-                        error = "Invalid valid email"
-                        return error     
+            elif field[i] == ".":
+                if count2 == 0:
+                    count2 += 1                 
+                    letter = string.ascii_letters
+                    if field[i] == 0:
+                        if field[i+1] not in letter:
+                            error = "Email has two special characters together"
+                            return error
+                    elif field[i] == len(field) - 1:
+                        if field[i-1] not in letter:
+                            error = "Email has two special characters together"
+                            return error     
+                    else:
+                        if field[1-1] not in letter or \
+                            field[i+1] not in letter:    
+                            error = "Email has two special characters together"
+                            return error
+                    if count > 0:
+                        point = True
                 else:
-                    if field[1-1] not in letter or \
-                        field[i+1] not in letter:    
-                        error = "Invalid email"
-                        return error
-                if count > 0:
-                    point = True    
+                    error = "Email contains more than one dot"
+                    return error
+                
             elif field[i] != "_":
-                error = "No special characters in email"
+                error = "Email contains invalid characters "
                 spec = True
                 return error
     if ats == True and point == True and spec == False:
         error = ""
     else:
-        error = "No @ or . characters in email"
+        error = "Email does not contain needed @ or . "
     return error
 
 @app.route("/", methods=['POST']) 
@@ -111,14 +118,17 @@ def validate_data():
 
     if not username_error and not password_error and \
         not validate_error and not email_error:
+        password = ""
+        val_password = ""
         return redirect('/welcome?username={0}'.format(username))
     else:
         return render_template('signup.html', 
-            title="Signup", username_error = username_error,
+            title="Sign up", username_error = username_error,
             password_error =password_error, 
             validate_error=validate_error,
             email_error=email_error, username = username,
-            password = password, val_password = val_password,
+            password = "", val_password = "",
+           # password = password, val_password = val_password,
             email = email)   
 
 @app.route("/welcome")

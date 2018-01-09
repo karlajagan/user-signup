@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <form action='/' method='post'>
-        <h1>Signup Page</h1>
+        <h1>Sign Up Page</h1>
         <hr>
         <br>
         <p>* fields are mandatory</p>
@@ -9,30 +9,22 @@
         <label>Username: *
             <input name="username" type="text" value='{{username}}'/>
         </label> 
-        <br>
             <p class="error">{{username_error}}</p>
-        <br>
         <label>Password: *
             <input name="password" type="password"  value='{{password}}'/>
         </label>
-        <br>
-            <p class="error">{{password_error}}</p>
-        <br>      
-        <label>Validate Password: *
+            <p class="error">{{password_error}}</p>       
+        <label>Confirm Password: *
                 <input name="val_password" type="password" value='{{val_password}}'/>
         </label>
-        <br>
             <p class="error">{{validate_error}}</p>
-        <br>
         <label>Email:
                 <input name="email" type="text" value='{{email}}' />
         </label> 
-        <br>
             <p class="error">{{email_error}}</p>
-        <br>
         <input type = "submit" />
         <br>
 
     </form>
-    <!--<p class="status">{{status}}</p> -->
+    
 {% endblock %}
