@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-# import cgi
+import re
 # import os
 import string
 
@@ -32,6 +32,14 @@ def validate_field(field,text):
             error = text+"must have between 3 and 20 characters"
             field = ""
     return error, field   
+
+def validate_email_re(field):
+    pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    if pattern.match(field):
+        return ""
+    else:
+        return "email not valid"
+
 
 def validate_email(field):
     error = ""
@@ -111,7 +119,7 @@ def validate_data():
     if email != '':
         email_error, email = validate_field(email,"Email ")
         if email_error == "":
-            email_error = validate_email(email)
+            email_error = validate_email_re(email)
             if email_error != "":
                 email = ""
             
